@@ -34,8 +34,8 @@ impl<T> Throttle<T> {
 	//	let last = self.last.load(Ordering::Relaxed);
 	//	let now = timestamp_ms();
 	//	if now > self.interval.as_millis() as u64 + last {
-			self.last.store(now, Ordering::Relaxed);
-			return self.flush(data, f);
+	//		self.last.store(now, Ordering::Relaxed);
+	//		return self.flush(data, f);
 	//	}
 
 		self.buf.lock().push(data);

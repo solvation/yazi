@@ -27,9 +27,9 @@ impl<T> Throttle<T> {
 		F: FnOnce(Vec<T>),
 	{
 		let total = self.total.fetch_sub(1, Ordering::Relaxed);
-		if total == 1 {
+	//	if total == 1 {
 			return self.flush(data, f);
-		} 
+	//	} 
 
 	//	let last = self.last.load(Ordering::Relaxed);
 	//	let now = timestamp_ms();

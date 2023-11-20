@@ -14,7 +14,7 @@ async fn _file(files: &[&Url]) -> Result<BTreeMap<Url, String>> {
 	let output = Command::new("file")
 		.args([cfg!(windows).then_some("-b").unwrap_or("-bL"), "--mime-type"])
 		.args(files)
-		.kill_on_drop(false)
+		.kill_on_drop(true)
 		.output()
 		.inspect_err(|e| error!("failed to execute `file`: {}", e))
 		.await?;

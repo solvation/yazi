@@ -29,7 +29,7 @@ impl<T> Throttle<T> {
 		let total = self.total.fetch_sub(1, Ordering::Relaxed);
 		if total == 1 {
 			return self.flush(data, f);
-		}
+		} else {
 
 	//	let last = self.last.load(Ordering::Relaxed);
 	//	let now = timestamp_ms();
@@ -39,6 +39,7 @@ impl<T> Throttle<T> {
 	//	}
 
 		self.buf.lock().push(data);
+		}	
 	}
 
 	#[inline]

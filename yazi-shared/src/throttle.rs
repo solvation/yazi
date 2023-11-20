@@ -31,12 +31,12 @@ impl<T> Throttle<T> {
 			return self.flush(data, f);
 		}
 
-		let last = self.last.load(Ordering::Relaxed);
-		let now = timestamp_ms();
-		if now > self.interval.as_millis() as u64 + last {
+	//	let last = self.last.load(Ordering::Relaxed);
+	//	let now = timestamp_ms();
+	//	if now > self.interval.as_millis() as u64 + last {
 			self.last.store(now, Ordering::Relaxed);
 			return self.flush(data, f);
-		}
+	//	}
 
 		self.buf.lock().push(data);
 	}

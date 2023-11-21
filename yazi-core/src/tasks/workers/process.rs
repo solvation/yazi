@@ -45,7 +45,7 @@ impl Process {
 					self.succ(task.id)?;
 				}
 				Err(e) => {
-			//		self.sch.send(TaskOp::New(task.id, 0))?;
+					self.sch.send(TaskOp::New(task.id, 0))?;
 					self.fail(task.id, format!("Failed to spawn process: {e}"))?;
 				}
 			}
@@ -56,7 +56,7 @@ impl Process {
 			match external::shell(opt) {
 				Ok(_) => self.succ(task.id)?,
 				Err(e) => {
-			//		self.sch.send(TaskOp::New(task.id, 0))?;
+					self.sch.send(TaskOp::New(task.id, 0))?;
 					self.fail(task.id, format!("Failed to spawn process: {e}"))?;
 				}
 			}

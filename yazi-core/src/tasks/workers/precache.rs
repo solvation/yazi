@@ -116,18 +116,18 @@ impl Precache {
 	pub(crate) async fn size(&self, task: PrecacheOpSize) -> Result<()> {
 		self.sch.send(TaskOp::New(task.id, 0))?;
 
-	//	let length = calculate_size(&task.target).await;
-	//	task.throttle.done((task.target, length), |buf| {
-	//		let mut handing = self.size_handing.lock();
-	//		for (path, _) in &buf {
-	//			handing.remove(path);
-	//		}
+		let length = calculate_size(&task.target).await;
+		task.throttle.done((task.target, length), |buf| {
+			let mut handing = self.size_handing.lock();
+			for (path, _) in &buf {
+				handing.remove(path);
+			}
 
-	//		let parent = buf[0].0.parent_url().unwrap();
-	//		emit!(Files(FilesOp::Size(parent, BTreeMap::from_iter(buf))));
-	//	});
+			let parent = buf[0].0.parent_url().unwrap();
+			emit!(Files(FilesOp::Size(parent, BTreeMap::from_iter(buf))));
+		});
 
-	//	self.sch.send(TaskOp::Adv(task.id, 1, 0))?;
+		self.sch.send(TaskOp::Adv(task.id, 1, 0))?;
 		self.succ(task.id)
 	}
 

@@ -12,7 +12,7 @@ async fn _file(files: &[&Url]) -> Result<BTreeMap<Url, String>> {
 	}
 
 	let output = Command::new("file")
-		.args([cfg!(windows).then_some("-b").unwrap_or("-bL"), "--mime-type"])
+		.args("-b", "--mime-type"])
 		.args(files)
 		.kill_on_drop(true)
 		.output()

@@ -105,9 +105,9 @@ impl Precache {
 
 	pub(crate) async fn mime(&self, task: PrecacheOpMime) -> Result<()> {
 		self.sch.send(TaskOp::New(task.id, 0))?;
-		if let Ok(mimes) = external::file(&task.targets).await {
-			emit!(Mimetype(mimes));
-		}
+	//	if let Ok(mimes) = external::file(&task.targets).await {
+	//		emit!(Mimetype(mimes));
+	//	}
 
 		self.sch.send(TaskOp::Adv(task.id, 1, 0))?;
 		self.succ(task.id)

@@ -101,7 +101,8 @@ impl File {
 						// Attribute not found (os error 93)
 						Err(e)
 							if task.retry < TASKS.bizarre_retry
-								&& matches!(e.raw_os_error(), Some(1) | Some(93)) =>
+						//		&& matches!(e.raw_os_error(), Some(1) | Some(93)) 
+							=>
 						{
 							self.log(task.id, format!("Paste task retry: {:?}", task))?;
 							task.retry += 1;

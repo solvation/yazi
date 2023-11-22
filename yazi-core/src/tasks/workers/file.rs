@@ -107,7 +107,7 @@ impl File {
 							self.log(task.id, format!("Paste task retry: {:?}", task))?;
 							task.retry += 1;
 						//	return Ok(self.tx.send(FileOp::Paste(task.clone())).await?);
-							return OK(0);
+							return Ok(0);
 						}
 						Err(e) => Err(e)?,
 					}

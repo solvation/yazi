@@ -23,7 +23,7 @@ crossterm     = { version = "^0", features = [ "event-stream" ] }
 fdlimit       = "^0"
 futures       = "^0"
 ratatui       = "^0"
-tokio         = { version = "^1", features = [ "parking_lot", "deadlock_detection" ] }
+tokio         = { version = "^1", features = [ "parking_lot" ] }
 unicode-width = "^0"
 
 # Logging
